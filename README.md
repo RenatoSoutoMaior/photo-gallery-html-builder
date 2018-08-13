@@ -1,2 +1,1 @@
-# photo-gallery-html-builder
-Photo Gallery Html Builder
+# Photo Gallery HTML Builder

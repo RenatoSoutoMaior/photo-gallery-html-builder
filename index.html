@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Photo Gallery HTML Builder</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/builder.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row navbar navbar-inverse" style="margin-top: 25px;">
+        <h1 class="text-center" style="color: white; padding-bottom: 10px;">Photo Gallery HTML Builder</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label class="control-label">Code Beautify:</label>
+            <a href="https://codebeautify.org/htmlviewer" target="_blank">https://codebeautify.org</a>
+        </div>
+        <div class="col-md-3 form-group">
+            <label class="control-label">HTML Tester:</label>
+            <a href="https://www.jmarshall.com/easy/html/testbed.html" target="_blank">https://www.jmarshall.com</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label class="control-label" for="root">Root</label>
+            <input type="text" class="form-control" id="root" name="root" autocomplete="off"
+                   style="margin-bottom:5px"/>
+        </div>
+        <div class="col-md-2 form-group">
+            <label class="control-label" for="widthX">Width</label>
+            <input type="number" class="form-control" id="widthX" name="widthX" autocomplete="off"
+                   style="margin-bottom:5px"/>
+        </div>
+        <div class="col-md-2 form-group">
+            <label class="control-label" for="heightY">Height</label>
+            <input type="number" class="form-control" id="heightY" name="heightY" autocomplete="off"
+                   style="margin-bottom:5px"/>
+        </div>
+        <div class="col-md-2 form-group">
+            <label for="borderColor">Border color</label>
+            <select id="borderColor" class="form-control">
+                <option value="white" selected>Choose...</option>
+                <option value="black">Black</option>
+                <option value="blue">Blue</option>
+                <option value="brown">Brown</option>
+                <option value="gray">Gray</option>
+                <option value="green">Green</option>
+                <option value="orange">Orange</option>
+                <option value="purple">Purple</option>
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+            </select>
+        </div>
+        <div class="col-md-2 form-group">
+            <label class="control-label" for="amountPerLine">Amount per line</label>
+            <input type="number" class="form-control" id="amountPerLine" name="amountPerLine" autocomplete="off"
+                   style="margin-bottom:5px;"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 form-group">
+            <input type="file" id="myFiles" size="50"
+                   onchange="builder(root.value, widthX.value, heightY.value, borderColor.value, amountPerLine.value)"
+                   multiple="multiple"/>
+            <br/>
+        </div>
+        <div class="col-md-1 form-group" style="margin-left: 75px;">
+            <button class="btn btn-secondary" id="copyAll" onclick="copyAll()">
+                <span class="glyphicon glyphicon-copy"></span>
+                <span>Copy All</span>
+            </button>
+        </div>
+        <div class="col-md-1 form-group" style="margin-left: 10px;">
+            <button class="btn btn-secondary" onclick="document.getElementById('myFiles').value = '';
+            document.getElementById('builtHTML').innerText = '';">
+                <span class="glyphicon glyphicon-erase"></span>
+                <span>Clean</span>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <textarea rows="10" class="builtHTML col-md-12" id="builtHTML"></textarea>
+        </div>
+    </div>
+    <div class="alert alert-success" id="success-alert">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>Copy successfully!</strong>
+    </div>
+</div>
+<script>
+    function copyAll() {
+        console.log("Hi");
+        var copyText = document.getElementsByClassName("builtHTML")[0];
+        copyText.select();
+        document.execCommand("copy");
+        ('.alert').alert();
+    }
+</script>
+</body>
+</html>
