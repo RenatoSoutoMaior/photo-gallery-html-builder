@@ -22,14 +22,19 @@
             <label class="control-label">HTML Tester:</label>
             <a href="https://www.jmarshall.com/easy/html/testbed.html" target="_blank">https://www.jmarshall.com</a>
         </div>
-        <div class="col-md-3 form-group">
-            <input type="checkbox" name="checkbox" onclick="showMe('borderColorDiv', 'borderSizeDiv')"/>
+        <div class="col-md-2 form-group">
+            <input type="checkbox" name="customBorder" onclick="showMe('borderColorDiv', 'borderSizeDiv')"/>
             <label class="checkbox-inline" style="padding-left: 0; margin-top: -5px;">
                 Custom Border</label>
         </div>
+        <div class="col-md-2 form-group" style="margin-left: -65px;">
+            <input type="checkbox" name="downloadButton" id="downloadButton"/>
+            <label class="checkbox-inline" style="padding-left: 0; margin-top: -5px;">
+                Download Button</label>
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-4 form-group">
+        <div class="col-md-6 form-group">
             <label class="control-label" for="root">Root</label>
             <input type="text" class="form-control" id="root" name="root" autocomplete="off"
                    style="margin-bottom:5px"/>
@@ -51,7 +56,27 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 form-group" id="borderColorDiv" style="display: none; margin-bottom:25px;">
+        <div class="col-md-1 form-group" style="margin-top: 15px;">
+            <button class="btn btn-secondary" id="copyAll" onclick="copyAll()">
+                <span class="glyphicon glyphicon-copy"></span>
+                <span>Copy All</span>
+            </button>
+        </div>
+        <div class="col-md-1 form-group" style="margin-left: 10px; margin-top: 15px;">
+            <button class="btn btn-secondary" onclick="document.getElementById('myFiles').value = '';
+            document.getElementById('builtHTML').innerText = '';">
+                <span class="glyphicon glyphicon-erase"></span>
+                <span>Clean</span>
+            </button>
+        </div>
+        <div class="col-md-6 form-group" style="padding-top: 5px; margin-top: 15px;">
+            <input type="file" id="myFiles" size="50"
+                   onchange="builder(root.value, widthX.value, heightY.value, amountPerLine.value,
+                   borderColor.value, borderSize.value)"
+                   multiple="multiple"/>
+            <br/>
+        </div>
+        <div class="col-md-2 form-group" id="borderColorDiv" style="display: none; margin-left: -10px;">
             <label for="borderColor">Border color</label>
             <select id="borderColor" class="form-control">
                 <option value="white" selected>Choose...</option>
@@ -73,30 +98,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-1 form-group">
-            <button class="btn btn-secondary" id="copyAll" onclick="copyAll()">
-                <span class="glyphicon glyphicon-copy"></span>
-                <span>Copy All</span>
-            </button>
-        </div>
-        <div class="col-md-1 form-group" style="margin-left: 10px;">
-            <button class="btn btn-secondary" onclick="document.getElementById('myFiles').value = '';
-            document.getElementById('builtHTML').innerText = '';">
-                <span class="glyphicon glyphicon-erase"></span>
-                <span>Clean</span>
-            </button>
-        </div>
-        <div class="col-md-9 form-group" style="padding-top: 5px;">
-            <input type="file" id="myFiles" size="50"
-                   onchange="builder(root.value, widthX.value, heightY.value, amountPerLine.value,
-                   borderColor.value, borderSize.value)"
-                   multiple="multiple"/>
-            <br/>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12 form-group">
-            <textarea rows="8" class="builtHTML col-md-12" id="builtHTML"></textarea>
+            <label for="builtHTML"></label><textarea rows="8" class="builtHTML col-md-12" id="builtHTML"></textarea>
         </div>
     </div>
     <div class="alert alert-success" id="success-alert">
@@ -104,13 +107,5 @@
         <strong>Copy successfully!</strong>
     </div>
 </div>
-<script>
-    function copyAll() {
-        var copyText = document.getElementsByClassName("builtHTML")[0];
-        copyText.select();
-        document.execCommand("copy");
-        ('.alert').alert();
-    }
-</script>
 </body>
 </html>
