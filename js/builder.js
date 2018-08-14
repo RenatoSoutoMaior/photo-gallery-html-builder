@@ -1,4 +1,4 @@
-function builder(root, widthX, heightY, borderColor, amountPerLine) {
+function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize) {
     var x = document.getElementById("myFiles");
     var txt = "";
     var tempAmountPerLine = 0;
@@ -7,8 +7,8 @@ function builder(root, widthX, heightY, borderColor, amountPerLine) {
         if (x.files.length === 0) {
             txt = "Select one or more files.";
         } else {
-            txt += "<style>img.HoverBorder {border: 2px solid white;}";
-            txt += " img.HoverBorder:hover {border: 2px solid " + borderColor + ";}</style>";
+            txt += "<style>img.HoverBorder {border: " + borderSize + "px solid white;}";
+            txt += " img.HoverBorder:hover {border: " + borderSize + "px solid " + borderColor + ";}</style>";
             txt += "<div class='row'>";
             for (var i = 0; i < x.files.length; i++) {
                 var file = x.files[i];
@@ -52,10 +52,23 @@ function copy(id) {
     }
 }
 
-$(document).ready (function(){
+function showMe(box1, box2) {
+    var checkbox = document.getElementsByName("checkbox");
+    var visibility = "none";
+    for (var i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked) {
+            visibility = "block";
+            break;
+        }
+    }
+    document.getElementById(box1).style.display = visibility;
+    document.getElementById(box2).style.display = visibility;
+}
+
+$(document).ready(function () {
     $("#success-alert").hide();
     $("#copyAll").click(function showAlert() {
-        $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
             $("#success-alert").slideUp(500);
         });
     });
