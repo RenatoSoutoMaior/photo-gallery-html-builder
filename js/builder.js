@@ -22,15 +22,14 @@ function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize) 
             txt += "<div class='row' style='text-align: center;'>";
             for (let i = 0; i < x.files.length; i++) {
                 let file = x.files[i];
-                let url = root + '/' + file.name;
 
                 if (tempAmountPerLine === parseInt(amountPerLine)) {
                     txt += "</div><div class='row' style='text-align: center;'>";
                     tempAmountPerLine = 0;
                 }
-                txt += "<a class='img hoverBorder' target='_blank' href=" + url + " width=" + widthX + " height=" + heightY;
+                txt += "<a class='img hoverBorder' target='_blank' href='" + root + '/' + file.name + "' width=" + widthX + " height=" + heightY;
                 txt += " style='margin: 5px; background-image:url(";
-                txt += "&#39" + url + "&#39";
+                txt += "&#39" + root + '/' + file.name + "&#39";
                 txt +=  ");display:inline-block;width:" + widthX + "px;height:" + heightY + "px;'></a>";
                 tempAmountPerLine += 1;
             }
