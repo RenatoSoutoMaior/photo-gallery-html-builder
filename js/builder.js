@@ -1,4 +1,4 @@
-function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize) {
+function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize, fileType) {
     let x = document.getElementById("myFiles");
     let txt = "";
     let tempAmountPerLine = 0;
@@ -14,7 +14,7 @@ function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize) 
             txt += ".img{width: 100%;height: 100%;background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;}";
             txt += "</style>";
             if (document.getElementsByName("downloadButton")[0].checked === true) {
-                txt += "<div class='row' style='text-align: center;'><a href='" + root + '/' + root + ".zip' download>";
+                txt += "<div class='row' style='text-align: center;'><a href='" + root + '/' + root + "." + fileType + "' download>";
                 txt += "<button class='buttonDownload' style='border: none;color: white;padding: 10px;text-align: center;";
                 txt += "text-decoration: none;font-size: 16px;margin: 4px 2px;cursor: pointer;";
                 txt += "border-radius: 8px;'>Download All</button></a></div>";
@@ -61,17 +61,22 @@ function copy(id) {
     }
 }
 
-function showMe(box1, box2) {
-    let checkbox = document.getElementsByName("customBorder");
-    let visibility = "none";
-    for (let i = 0; i < checkbox.length; i++) {
-        if (checkbox[i].checked) {
-            visibility = "block";
-            break;
-        }
+function showMeBorder() {
+    if(document.getElementsByName("customBorder")[0].checked){
+        document.getElementById("borderColor").disabled = false;
+        document.getElementById("borderSize").disabled = false;
+    } else {
+        document.getElementById("borderColor").disabled = true;
+        document.getElementById("borderSize").disabled = true;
     }
-    document.getElementById(box1).style.display = visibility;
-    document.getElementById(box2).style.display = visibility;
+}
+
+function showMeTypeFile() {
+    if(document.getElementsByName("downloadButton")[0].checked){
+        document.getElementById("typeFile").disabled = false;
+    } else {
+        document.getElementById("typeFile").disabled = true;
+    }
 }
 
 function copyAll() {
