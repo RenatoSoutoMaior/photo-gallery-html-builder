@@ -7,29 +7,31 @@ function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize) 
         if (x.files.length === 0) {
             txt = "Select one or more files.";
         } else {
-            txt += "<style>img.hoverBorder {border: " + borderSize + "px solid white;} ";
-            txt += "img.hoverBorder:hover {border: " + borderSize + "px solid " + borderColor + ";}";
+            txt += "<style>a.hoverBorder {border: " + borderSize + "px solid white;} ";
+            txt += "a.hoverBorder:hover {border: " + borderSize + "px solid " + borderColor + ";} ";
             txt += "button.buttonDownload {background-color: #008CBA;} ";
-            txt += "button.buttonDownload:hover {background-color: #00a3d8;}</style>";
+            txt += "button.buttonDownload:hover {background-color: #00a3d8;} ";
+            txt += ".img{width: 100%;height: 100%;background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;}";
+            txt += "</style>";
             if (document.getElementsByName("downloadButton")[0].checked === true) {
-                txt += "<div class='row' style='text-align: center;'><a href='" + root + ".zip' download>";
+                txt += "<div class='row' style='text-align: center;'><a href='" + root + '/' + root + ".zip' download>";
                 txt += "<button class='buttonDownload' style='border: none;color: white;padding: 10px;text-align: center;";
-                txt += "text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;";
+                txt += "text-decoration: none;font-size: 16px;margin: 4px 2px;cursor: pointer;";
                 txt += "border-radius: 8px;'>Download All</button></a></div>";
             }
             txt += "<div class='row' style='text-align: center;'>";
             for (let i = 0; i < x.files.length; i++) {
                 let file = x.files[i];
+                let url = root + '/' + file.name;
 
                 if (tempAmountPerLine === parseInt(amountPerLine)) {
                     txt += "</div><div class='row' style='text-align: center;'>";
                     tempAmountPerLine = 0;
                 }
-                txt += "<a target='_blank' href='" + root + '/' + file.name + "'" + " width=" + widthX + " height=" + heightY;
-                txt += "><img class='hoverBorder' src='" + root + '/';
-                if ('name' in file) {
-                    txt += file.name + "' width=" + widthX + " height=" + heightY + " style='margin: 5px;'/></a>";
-                }
+                txt += "<a class='img hoverBorder' target='_blank' href=" + url + " width=" + widthX + " height=" + heightY;
+                txt += " style='margin: 5px; background-image:url(";
+                txt += "&#39" + url + "&#39";
+                txt +=  ");display:inline-block;width:" + widthX + "px;height:" + heightY + "px;'></a>";
                 tempAmountPerLine += 1;
             }
             txt += "</div>";
