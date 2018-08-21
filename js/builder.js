@@ -11,7 +11,7 @@ function builder(root, widthX, heightY, amountPerLine, borderColor, borderSize, 
             txt += "a.hoverBorder:hover {border: " + borderSize + "px solid " + borderColor + ";} ";
             txt += "button.buttonDownload {background-color: #008CBA;} ";
             txt += "button.buttonDownload:hover {background-color: #00a3d8;} ";
-            txt += ".img{width: 100%;height: 100%;background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;}";
+            txt += ".img{width: 100%;height: 100%;background-position: 50% 10%;background-repeat: no-repeat;background-size: cover;}";
             txt += "</style>";
             if (document.getElementsByName("downloadButton")[0].checked === true) {
                 txt += "<div class='row' style='text-align: center;'><a href='" + root + '/' + root + "." + fileType + "' download>";
