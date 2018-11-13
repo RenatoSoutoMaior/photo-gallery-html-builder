@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: rsm
- * Date: 13/11/18
- * Time: 09:51
- */
+header( 'Location: https://photo-gallery-html-builder.herokuapp.com/index.html' ) ;
+?>
